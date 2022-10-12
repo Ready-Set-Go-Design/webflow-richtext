@@ -1,32 +1,34 @@
 $ = jQuery;
 
 $(document).ready(function () {
-  formatText();
+  formatText("w-richtext");
 
-  $("#editor_input").on("input", function () {
-    formatText();
-  });
+  // formatText("#editor_input", "#editor_output");
+  // $("#editor_input").on("input", function () {
+  //   formatText();
+  // });
 });
 
-function formatText() {
+function formatText(iC, oC) {
   // replace placeholder wrappers with actual tags
-  let incoming = $("#editor_input").html();
+  outputClass = "#editor_output";
+  inputClass = "#editor_output";
 
-  //
-
+  let incoming = $(inputClass).html();
   incoming = incoming.replaceAll("{{", "<");
 
   // do something here to auto-close self-closing tags, like br and img?
   incoming = incoming.replaceAll("}}", ">");
 
-  $("#editor_output").html(incoming);
+  $(outputClass).html(incoming);
 
   // remove empty p tags to facilitate div extraction
-  $("#editor_output p:empty").remove();
+  $(outputClass + " p:empty").remove();
 
   // remove p tags that are just line breaks
-  let output = $("#editor_output").html();
-  $("#editor_output").html(output.replaceAll("<p><br></p>", ""));
-  $("#editor_output").html(output.replaceAll("&nbsp;</p><p>", ""));
-  $("#editor_output").html(output.replaceAll("</p><p>", ""));
+  let output = $(outputClass).html();
+
+  $(outputClass).html(output.replaceAll("<p><br></p>", ""));
+  $(outputClass).html(output.replaceAll("&nbsp;</p><p>", ""));
+  $(outputClass).html(output.replaceAll("</p><p>", ""));
 }
