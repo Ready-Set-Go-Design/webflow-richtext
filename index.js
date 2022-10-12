@@ -1,34 +1,47 @@
 $ = jQuery;
 
 $(document).ready(function () {
-  formatText(".w-richtext");
+  formatAllRichText();
+  const inputClass = "#rsg-editor-input";
 
-  // formatText("#editor_input", "#editor_output");
-  // $("#editor_input").on("input", function () {
-  //   formatText();
-  // });
+  // this is used for testing;
+  if ($(inputClass).length > 0) {
+    $(inputClass).on("input", function () {
+      formatAllRichText();
+    });
+  }
 });
 
-function formatText() {
-  // replace placeholder wrappers with actual tags
-  outputClass = "#editor_output";
-  inputClass = "#editor_output";
+function formatAllRichText() {
+  let incoming, inputClass;
 
-  let incoming = $(inputClass).html();
-  incoming = incoming.replaceAll("{{", "<");
+  formatId = ".w-richtext";
+  console.log;
+  inputClass = "#rsg-editor-input";
 
-  // do something here to auto-close self-closing tags, like br and img?
-  incoming = incoming.replaceAll("}}", ">");
+  // only run this if the test input div is present
+  if ($(inputClass).length > 0) {
+    incoming = $(inputClass).html();
+    incoming = incoming.replaceAll("{{", "<");
+    incoming = incoming.replaceAll("}}", ">");
+  }
 
-  $(outputClass).html(incoming);
+  $(formatId).each(function () {
+    if ($(inputClass).length === 0) {
+      incoming = $(this).html();
+      incoming = incoming.replaceAll("{{", "<");
+      incoming = incoming.replaceAll("}}", ">");
+    }
+    $(this).html(incoming);
 
-  // remove empty p tags to facilitate div extraction
-  $(outputClass + " p:empty").remove();
+    // remove p tags that are just line breaks
+    let output = $(this).html();
 
-  // remove p tags that are just line breaks
-  let output = $(outputClass).html();
+    $(this).html(output.replaceAll("<p><br></p>", ""));
+    $(this).html(output.replaceAll("&nbsp;</p><p>", ""));
+    $(this).html(output.replaceAll("</p><p>", ""));
+  });
 
-  $(outputClass).html(output.replaceAll("<p><br></p>", ""));
-  $(outputClass).html(output.replaceAll("&nbsp;</p><p>", ""));
-  $(outputClass).html(output.replaceAll("</p><p>", ""));
+  // remove empty p tags
+  $(".w-richtext p:empty").remove();
 }
