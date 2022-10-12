@@ -1,7 +1,7 @@
 $ = jQuery;
 
 $(document).ready(function () {
-  formatText("w-richtext");
+  formatText(".w-richtext");
 
   // formatText("#editor_input", "#editor_output");
   // $("#editor_input").on("input", function () {
@@ -9,7 +9,7 @@ $(document).ready(function () {
   // });
 });
 
-function formatText(iC, oC) {
+function formatText() {
   // replace placeholder wrappers with actual tags
   outputClass = "#editor_output";
   inputClass = "#editor_output";
