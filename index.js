@@ -39,7 +39,6 @@ function formatAllRichText() {
 
     $(this).html(output.replaceAll("<p><br></p>", ""));
     $(this).html(output.replaceAll("&nbsp;</p><p>", ""));
-    $(this).html(output.replaceAll("</p><p>", ""));
   });
 
   // remove empty p tags
