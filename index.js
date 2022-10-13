@@ -26,7 +26,6 @@
       incoming = incoming.replaceAll("{{", "<");
       incoming = incoming.replaceAll("}}", ">");
     }
-
     $(formatId).each(function () {
       if ($(inputClass).length === 0) {
         incoming = $(this).html();

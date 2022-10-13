@@ -1,6 +1,11 @@
 .w-richtext[rich-text-layout] {
-  visibility: hidden;
+  display: none;
   position: relative;
+}
+
+.w-richtext[rich-text-layout][animate] {
+  visibility: hidden;
+  display: block;
 }
 .w-richtext[rich-text-layout][animate]:before {
   -webkit-transition: background-color 0.5s ease-out;
