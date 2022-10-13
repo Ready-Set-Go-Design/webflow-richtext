@@ -1,0 +1,29 @@
+.w-richtext[rich-text-layout] {
+  visibility: hidden;
+  position: relative;
+}
+.w-richtext[rich-text-layout][animate]:before {
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+  content: " ";
+  visibility: visible;
+  background-color: #dedede;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100px;
+}
+
+.w-richtext[rich-text-layout-animation]:before {
+  visibility: visible;
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+  background-color: transparent !important;
+}
+
+.w-richtext[rich-text-layout-animation] {
+  visibility: visible;
+}
