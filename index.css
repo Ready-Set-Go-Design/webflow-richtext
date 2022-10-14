@@ -1,27 +1,31 @@
-.w-richtext[rich-text-layout] {
+.w-richtext[rsg-rich-layout] {
   display: none;
   position: relative;
 }
 
-.w-richtext[rich-text-layout][animate] {
+.w-richtext[rsg-rich-layout][rsg-animate] {
   visibility: hidden;
+
   display: block;
 }
-.w-richtext[rich-text-layout][animate]:before {
+.w-richtext[rsg-rich-layout][rsg-animate]:before {
   -webkit-transition: background-color 0.5s ease-out;
   -moz-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
-  content: " ";
+  content: "...";
   visibility: visible;
   background-color: #dedede;
+  color: #ffffff;
+  font-size: 24px;
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 100px;
+  height: 100%;
+  text-align: center;
 }
 
-.w-richtext[rich-text-layout-animation]:before {
+.w-richtext[rsg-rich-layout-animation]:before {
   visibility: visible;
   -webkit-transition: background-color 0.5s ease-out;
   -moz-transition: background-color 0.5s ease-out;
@@ -29,6 +33,6 @@
   background-color: transparent !important;
 }
 
-.w-richtext[rich-text-layout-animation] {
+.w-richtext[rsg-rich-layout-animation] {
   visibility: visible;
 }

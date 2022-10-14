@@ -27,35 +27,37 @@
       incoming = incoming.replaceAll("}}", ">");
     }
     $(formatId).each(function () {
-      if ($(inputClass).length === 0) {
-        incoming = $(this).html();
-        incoming = incoming.replaceAll("{{", "<");
-        incoming = incoming.replaceAll("}}", ">");
+      if ($(this).attr("rsg-rich-layout") !== undefined) {
+        if ($(inputClass).length === 0) {
+          incoming = $(this).html();
+          incoming = incoming.replaceAll("{{", "<");
+          incoming = incoming.replaceAll("}}", ">");
+        }
+        $(this).html(incoming);
+
+        // remove p tags that are just line breaks
+        let output = $(this).html();
+
+        $(this).html(output.replaceAll("<p><br></p>", ""));
+        $(this).html(output.replaceAll("&nbsp;</p><p>", ""));
+        $(this).html(output.replaceAll("</p><p>", ""));
+
+        const shouldAnimateOut = $(this).attr("rsg-animate") !== undefined;
+        if (shouldAnimateOut) {
+          setTimeout(() => {
+            $(this).attr("rsg-rich-layout-animation", "true");
+          }, 500);
+        }
+
+        setTimeout(
+          () => {
+            $(this).removeAttr("rsg-rich-layout-animation");
+            $(this).removeAttr("rsg-rich-layout");
+            $(this).removeAttr("rsg-animate");
+          },
+          shouldAnimateOut ? 1000 : 100
+        );
       }
-      $(this).html(incoming);
-
-      // remove p tags that are just line breaks
-      let output = $(this).html();
-
-      $(this).html(output.replaceAll("<p><br></p>", ""));
-      $(this).html(output.replaceAll("&nbsp;</p><p>", ""));
-      $(this).html(output.replaceAll("</p><p>", ""));
-
-      const shouldAnimateOut = $(this).attr("animate") !== undefined;
-      if (shouldAnimateOut) {
-        setTimeout(() => {
-          $(this).attr("rich-text-layout-animation", "true");
-        }, 250);
-      }
-
-      setTimeout(
-        () => {
-          $(this).removeAttr("rich-text-layout-animation");
-          $(this).removeAttr("rich-text-layout");
-          $(this).removeAttr("animate");
-        },
-        shouldAnimateOut ? 500 : 100
-      );
     });
 
     // remove empty p tags
