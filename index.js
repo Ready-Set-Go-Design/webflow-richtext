@@ -81,15 +81,17 @@
 
         if (splitTag[0].toLowerCase() === "src") {
           let teleportId = splitTag[1].replaceAll('"', "");
-          teleportSources.push($("#" + teleportId).clone());
+
+          const tps = $("*").find(`[data-teleport="${teleportId}"]`);
+          teleportSources.push(tps[0]);
         }
       });
     });
 
     let index = 0;
     teleportSources.forEach((output) => {
-      if (output[0]) {
-        src = src.replace(matches[index], output[0].outerHTML);
+      if (output) {
+        src = src.replace(matches[index], output.outerHTML);
       } else {
         src = src.replace(matches[index], "");
       }

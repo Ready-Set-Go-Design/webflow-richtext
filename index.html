@@ -40,7 +40,7 @@
       <div contenteditable id="rsg-editor-input">
         {{teleport src="teleport-source-1"}}
         <p>Editor Content goes here.</p>
-        {{teleport src="teleport-source-1"}}
+        {{teleport src="teleport-source-3"}}
         <p>It's really fun</p>
         <p>Testing a {{strong}}thing{{/strong}}.</p>
         <p>Editor Content goes here.</p>
@@ -57,8 +57,8 @@
       </div>
  
       <div style="margin-top: 20px;">
-        <div style="background-color: #cccccc;" id="teleport-source-1">This is the first teleport source.</div>
-        <div style="background-color: blue; color: white;" id="teleport-source-2">This is the <strong>second</strong> teleport source.</div>
+        <div style="background-color: #cccccc;" data-teleport="teleport-source-1">This is the first teleport source.</div>
+        <div style="background-color: blue; color: white;" data-teleport="teleport-source-3">This is the <strong>second</strong> teleport source.</div>
       </div>
     </div>
   </body>
