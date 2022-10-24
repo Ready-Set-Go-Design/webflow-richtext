@@ -38,39 +38,28 @@
     <div class="input">
       <div><strong>Input:</strong></div>
       <div contenteditable id="rsg-editor-input">
+        {{teleport src="teleport-source-1"}}
         <p>Editor Content goes here.</p>
+        {{teleport src="teleport-source-1"}}
         <p>It's really fun</p>
         <p>Testing a {{strong}}thing{{/strong}}.</p>
         <p>Editor Content goes here.</p>
+        {{teleport src="teleport-source-2"}}
         
       </div>
     </div>
     <div class="output">
       <div><strong>Output:</strong></div>
     
-      <div class="w-richtext" >
-        <div>
-          Non-updating.
-        </div>
-   
-      </div>
+ 
       <div class="w-richtext" rsg-rich-layout="true">
-        <div>
-          {{em}}first{{/em}} output
-          <p>this is fun</p>
-          <p>this is really fun</p>
-        </div>
    
       </div>
-      <div class="w-richtext" rsg-animate="true" rsg-rich-layout="true">
-        <div>
-          {{em}}first{{/em}} output
-          <p>this is fun</p>
-          <p>this is really fun</p>
-        </div>
-   
+ 
+      <div style="margin-top: 20px;">
+        <div style="background-color: #cccccc;" id="teleport-source-1">This is the first teleport source.</div>
+        <div style="background-color: blue; color: white;" id="teleport-source-2">This is the <strong>second</strong> teleport source.</div>
       </div>
-      
     </div>
   </body>
 </html>

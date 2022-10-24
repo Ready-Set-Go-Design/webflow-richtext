@@ -36,3 +36,8 @@
 .w-richtext[rsg-rich-layout-animation] {
   visibility: visible;
 }
+
+.teleport-source {
+  background-color: blue;
+  color: white;
+}
