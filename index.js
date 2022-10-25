@@ -45,7 +45,7 @@
 
         $(this).html(output.replaceAll("<p><br></p>", ""));
         $(this).html(output.replaceAll("&nbsp;</p><p>", ""));
-        $(this).html(output.replaceAll("</p><p>", ""));
+        // $(this).html(output.replaceAll("</p><p>", ""));
 
         const shouldAnimateOut = $(this).attr("rsg-animate") !== undefined;
         if (shouldAnimateOut) {
