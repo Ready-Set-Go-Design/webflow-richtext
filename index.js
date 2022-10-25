@@ -32,7 +32,6 @@
       if ($(this).attr("rsg-rich-layout") !== undefined) {
         if ($(inputClass).length === 0) {
           incoming = $(this).html();
-
           // look for teleports
           incoming = parseTeleports(incoming);
           incoming = incoming.replaceAll("{{", "<");
@@ -74,6 +73,11 @@
     const teleportTagPattern = new RegExp("{{s*teleport[^}}]*}}", "gm");
     const teleportSources = [];
     const matches = src.match(teleportTagPattern);
+
+    if (!matches) {
+      return src;
+    }
+
     matches.forEach((tp) => {
       const tags = tp.match(/\b(\w+)\s*=\s*"(.*?)"/g);
       tags.forEach((tag) => {
@@ -96,6 +100,12 @@
         src = src.replace(matches[index], "");
       }
       index++;
+    });
+
+    teleportSources.forEach((tp) => {
+      if (tp) {
+        tp.remove();
+      }
     });
 
     return src;
