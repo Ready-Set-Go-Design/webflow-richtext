@@ -87,7 +87,10 @@
           let teleportId = splitTag[1].replaceAll('"', "");
 
           const tps = $("*").find(`[data-teleport="${teleportId}"]`);
-          teleportSources.push(tps[0]);
+          const objectToTeleport = tps[0];
+          // $(objectToTeleport).attr("data-teleport", "");
+          // teleportSources.push($(objectToTeleport).clone());
+          teleportSources.push(objectToTeleport);
         }
       });
     });
@@ -95,6 +98,7 @@
     let index = 0;
     teleportSources.forEach((output) => {
       if (output) {
+        const outputCopy = $(output).clone(true);
         src = src.replace(matches[index], output.outerHTML);
       } else {
         src = src.replace(matches[index], "");
@@ -102,12 +106,8 @@
       index++;
     });
 
-    teleportSources.forEach((tp) => {
-      if (tp) {
-        tp.remove();
-      }
-    });
-
+    $(".w-richtext > [data-teleport").removeAttr("data-teleport");
+    $("[data-teleport]").remove();
     return src;
   }
 })();
